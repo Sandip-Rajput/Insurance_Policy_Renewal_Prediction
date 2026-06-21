@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insurance Renewal Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Insurance Renewal Prediction</h1>
+        <p>Predict whether a customer will renew their insurance policy next year</p>
+    </div>
+</div>
+
+<div class="main-card">
+
+    <div class="card-header">
+        <h2>Customer Policy Details</h2>
+        <p>Enter customer information below to get renewal prediction.</p>
+    </div>
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="Age" placeholder="Example: 32" required>
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <select name="Gender" required>
+                {% for gender in gender_list %}
+                <option value="{{ gender }}">{{ gender }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>City</label>
+            <select name="City" required>
+                {% for city in city_list %}
+                <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>State</label>
+            <select name="State" required>
+                {% for state in state_list %}
+                <option value="{{ state }}">{{ state }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Annual Income</label>
+            <input type="number" name="Annual_Income" placeholder="Example: 650000" required>
+        </div>
+
+        <div class="form-group">
+            <label>Occupation</label>
+            <select name="Occupation" required>
+                {% for occupation in occupation_list %}
+                <option value="{{ occupation }}">{{ occupation }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Policy Type</label>
+            <select name="Policy_Type" required>
+                {% for policy in policy_type_list %}
+                <option value="{{ policy }}">{{ policy }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Sum Assured</label>
+            <input type="number" name="Sum_Assured" placeholder="Example: 500000" required>
+        </div>
+
+        <div class="form-group">
+            <label>Years With Company</label>
+            <input type="number" name="Years_With_Company" placeholder="Example: 4" required>
+        </div>
+
+        <div class="form-group">
+            <label>Total Claims</label>
+            <input type="number" name="Total_Claims" placeholder="Example: 1" required>
+        </div>
+
+        <div class="form-group">
+            <label>Claim Amount</label>
+            <input type="number" name="Claim_Amount" placeholder="Example: 12000" required>
+        </div>
+
+        <div class="form-group">
+            <label>Late Payment Count</label>
+            <input type="number" name="Late_Payment_Count" placeholder="Example: 0" required>
+        </div>
+
+        <div class="form-group">
+            <label>Previous Renewals</label>
+            <input type="number" name="Previous_Renewals" placeholder="Example: 3" required>
+        </div>
+
+        <div class="form-group">
+            <label>Satisfaction Score</label>
+            <input type="number" name="Satisfaction_Score" min="1" max="10" placeholder="1 to 10" required>
+        </div>
+
+        <div class="form-group">
+            <label>Auto Renewal Enabled</label>
+            <select name="Auto_Renewal_Enabled" required>
+                {% for auto in auto_renewal_list %}
+                <option value="{{ auto }}">{{ auto }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Agent Rating</label>
+            <input type="number" step="0.1" name="Agent_Rating" min="1" max="5" placeholder="1 to 5" required>
+        </div>
+
+        <div class="form-group">
+            <label>Policy Year</label>
+            <input type="number" name="Policy_Year" placeholder="Example: 2024" required>
+        </div>
+
+        <div class="form-group">
+            <label>Policy Month</label>
+            <input type="number" name="Policy_Month" min="1" max="12" placeholder="1 to 12" required>
+        </div>
+
+        <button type="submit" class="predict-btn">Predict Renewal</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result-box">
+        <p>Predicted Renewal Status</p>
+        <h2>{{ prediction }}</h2>
+    </div>
+    {% endif %}
+
+</div>
+
+<footer>
+    Insurance Renewal Prediction | Python • Flask • Machine Learning
+</footer>
+
+</body>
+</html>
